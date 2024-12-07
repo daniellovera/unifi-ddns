@@ -106,7 +106,7 @@ async function handleRequest(request) {
 	}
 
 	if (!request.headers.has("Authorization") && !request.url.includes("token=")) {
-		return new Response("Not Foundd.", { status: 404 });
+		return new Response("Unauthorized.", { status: 401 });
 	}
 
 	const { username, password } = parseBasicAuth(request);
