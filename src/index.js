@@ -50,8 +50,9 @@ class Cloudflare {
 		);
 		const body = await response.json();
 		if (!body.success) {
-			throw new CloudflareApiException("Failed to update dns record");
-		}
+  const errorDetails = body.errors ? JSON.stringify(body.errors) : "No details provided";
+  throw new CloudflareApiException(`Failed to update DNS record: ${errorDetails}`);
+}
 		return body.result[0];
 	}
 
